@@ -5,7 +5,12 @@
 
 [Project Page](https://yongtaoge.github.io/projects/humanwild/), [Paper](https://arxiv.org/abs/2403.11111)
 
-[Yongtao Ge](), [Wenjia Wang](), [Yongfan Chen](), [Hao Chen](), [Chunhua Shen]()
+[Yongtao Ge]()<sup>2*</sup>, <sup>1*</sup>, [Wenjia Wang](), [Yongfan Chen]()<sup>1*</sup>, [Hao Chen]()<sup>1*</sup>, [Chunhua Shen]()<sup>1*</sup>
+
+<sup>1</sup>[Zhejiang University](https://www.zju.edu.cn/english/), &nbsp;
+<sup>2</sup>[The University of Adelaide](https://www.adelaide.edu.au/aiml/), &nbsp;
+<sup>3</sup>[The University of Hong Kong](https://www.hku.hk/), &nbsp;
+
 
 </div>
 <br/>
@@ -34,6 +39,16 @@ python demo.py \
 --num_inference_steps 50 \
 --num_images_per_prompt 4
 ```
+
+## 🌟 Acknowledgement
+
+We acknowledge the use of the following sources in our paper.
+
+- [BEDLAM](https://bedlam.is.tue.mpg.de/index.html)
+- [SynBody](https://synbody.github.io/)
+- [LAION5B](https://laion.ai/blog/laion-5b/)
+- [COYO-700M](https://github.com/kakaobrain/coyo-dataset)
+- [Hi4D](https://yifeiyin04.github.io/Hi4D/)
 
 ## 🎓 Citation
 ```
