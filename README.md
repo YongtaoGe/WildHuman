@@ -3,7 +3,7 @@
 3D Human Reconstruction in the Wild with Synthetic Data Using Generative Models
 </h1>
 
-[Project Page](https://yongtaoge.github.io/projects/humanwild/), [Paper](https://arxiv.org/abs/2403.11111)
+[Project Page](https://yongtaoge.github.io/projects/humanwild/), [Paper](https://arxiv.org/abs/2403.11111), [HuggingFace](https://huggingface.co/geyongtao/HumanWild)
 
 [Yongtao Ge]()<sup>2,</sup><sup>1</sup>, [Wenjia Wang]()<sup>3</sup>, [Yongfan Chen]()<sup>1</sup>, [Hao Chen]()<sup>1</sup>, [Chunhua Shen]()<sup>1</sup>
 
