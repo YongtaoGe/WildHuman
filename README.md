@@ -15,7 +15,7 @@
 ## 📢 News
 2024-03-22: Release pretrained weight on [HuggingFace](https://huggingface.co/geyongtao/HumanWild) and demo code. <br>
 
-## Dependencies
+## 🛠️ Dependencies
 ```
 pip install -r requirements.txt
 ```
