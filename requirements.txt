@@ -2,3 +2,8 @@ opencv-python-headless>=4.8.0.74
 compel
 diffusers>=0.23.0
 accelerate>=0.21.0
+transformers==4.33.2
+pillow
+torch>=2.0.1
+torchvision>=0.15.2
+numpy
