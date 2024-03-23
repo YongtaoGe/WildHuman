@@ -4,14 +4,12 @@ import cv2
 import torch
 import numpy as np
 from PIL import Image
-# from controlnet_aux import OpenposeDetector
 from transformers import DPTFeatureExtractor, DPTForDepthEstimation
-from diffusers import ControlNetModel, AutoencoderKL # StableDiffusionXLControlNetPipeline
+from diffusers import ControlNetModel, AutoencoderKL
 from diffusers.utils import load_image
 from diffusers import StableDiffusionXLPipeline
 from diffusers.pipeline_controlnet_sdxl import StableDiffusionXLControlNetPipeline
 from compel import Compel, ReturnedEmbeddingsType
-# from diffusers.models.attention_processor import AttnProcessor2_0
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Simple example of a pose image generation scripts.")
@@ -117,6 +115,35 @@ def parse_args():
     return args
 
 
+def resize_max_res(
+    img: Image.Image, max_edge_resolution: int, resample_method=Resampling.BILINEAR
+) -> Image.Image:
+    """
+    Resize image to limit maximum edge length while keeping aspect ratio.
+
+    Args:
+        img (`Image.Image`):
+            Image to be resized.
+        max_edge_resolution (`int`):
+            Maximum edge length (pixel).
+        resample_method (`PIL.Image.Resampling`):
+            Resampling method used to resize images.
+
+    Returns:
+        `Image.Image`: Resized image.
+    """
+    original_width, original_height = img.size
+    downscale_factor = min(
+        max_edge_resolution / original_width, max_edge_resolution / original_height
+    )
+
+    new_width = int(original_width * downscale_factor)
+    new_height = int(original_height * downscale_factor)
+
+    resized_img = img.resize((new_width, new_height), resample=resample_method)
+    return resized_img
+
+
 if __name__ == "__main__":
     args = parse_args()
     condition_images = []
@@ -133,23 +160,17 @@ if __name__ == "__main__":
             normal_image = merged_image.convert("RGB")
         else:
             normal_image = load_image(args.normal_image_path)
-            # normal_image = normal_image.resize((1024, 1024))
+            normal_image = resize_max_res(normal_image, max_edge_resolution=1024)
 
         base_name = os.path.basename(args.normal_image_path)
 
         condition_images.append(normal_image)
         normal_controlnet = ControlNetModel.from_pretrained(
-                # "./data/sdxl_weights/controlnet-openpose-sdxl-1.0/snapshots/4104e2c285d4e7e0ff1e426923415819ffa2bec7", 
-                # "./data/sdxl_weights/controlnet-openpose-sdxl-1.0", 
-                # "./logs_controlnet_sdxl_normal_5e-5/checkpoint-35000/controlnet",
                 args.normal_controlnet_dir,
-                # "./logs_controlnet/checkpoint-20000/controlnet/",
                 use_safetensors=True,
                 torch_dtype=torch.float16).to("cuda")
         controlnets.append(normal_controlnet)
 
-    # MODEL_DIR="data/weights/sdxl-base-1.0/"
-    # VAE_DIR="data/weights/sdxl-vae-fp16-fix/"
     MODEL_DIR=args.sdxl_dir
     VAE_DIR=args.vae_dir
 
@@ -157,7 +178,6 @@ if __name__ == "__main__":
 
     if len(controlnets) == 0:
         pipe = StableDiffusionXLPipeline.from_pretrained(
-            # "stabilityai/stable-diffusion-xl-base-1.0", 
             MODEL_DIR,
             torch_dtype=torch.float16, 
             variant="fp16", 
@@ -170,8 +190,7 @@ if __name__ == "__main__":
             returned_embeddings_type=ReturnedEmbeddingsType.PENULTIMATE_HIDDEN_STATES_NON_NORMALIZED, 
             requires_pooled=[False, True],
             truncate_long_prompts=False
-            )
-
+        )
         # negative_prompt = "ugly, anime, cartoon, graphic, text, painting, crayon, graphite, abstract glitch, blurry."
 
     else:

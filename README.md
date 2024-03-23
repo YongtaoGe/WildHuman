@@ -3,7 +3,7 @@
 3D Human Reconstruction in the Wild with Synthetic Data Using Generative Models
 </h1>
 
-[Project Page](https://yongtaoge.github.io/projects/humanwild/), [Paper](https://arxiv.org/abs/2403.11111), [HuggingFace](https://huggingface.co/geyongtao/HumanWild)
+[Project Page](https://yongtaoge.github.io/projects/humanwild/), 📑[Paper](https://arxiv.org/abs/2403.11111), 🤗[HuggingFace](https://huggingface.co/geyongtao/HumanWild)
 
 [Yongtao Ge]()<sup>2,</sup><sup>1</sup>, [Wenjia Wang]()<sup>3</sup>, [Yongfan Chen]()<sup>1</sup>, [Hao Chen]()<sup>1</sup>, [Chunhua Shen]()<sup>1</sup>
 
@@ -27,15 +27,21 @@ pip install -r requirements.txt
 
 ## 🚀 Demo
 ```
-1. download the pretrained weight from huggingface repo and put it in $WEIGHT_DIR
+1. download SDXL weight from https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0, put it in $SDXL_DIR
 
-2. inference the demo code
+2. download fixed SDXL VAE weight from https://huggingface.co/madebyollin/sdxl-vae-fp16-fix, put it in $VAE_DIR
+
+3. download the pretrained weight from huggingface repo and put it in $CONTROLNET_DIR
+
+4. inference the demo code
 python demo.py \
 --normal_image_path 'data/controlnet_condition/00000_0_0002.png' \
 --prompt 'a man lift his leg in the wild, photo realistic.' \
 --controlnet_conditioning_scale 0.75 \
 --output_dir './output_dir' \
---normal_controlnet_dir $WEIGHT_DIR \
+--sdxl_dir $SDXL_DIR \
+--vae_dir $VAE_DIR \
+--normal_controlnet_dir $CONTROLNET_DIR \
 --num_inference_steps 50 \
 --num_images_per_prompt 4
 ```
