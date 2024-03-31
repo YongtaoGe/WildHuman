@@ -7,8 +7,7 @@ from PIL import Image
 from transformers import DPTFeatureExtractor, DPTForDepthEstimation
 from diffusers import ControlNetModel, AutoencoderKL
 from diffusers.utils import load_image
-from diffusers import StableDiffusionXLPipeline
-from diffusers.pipeline_controlnet_sdxl import StableDiffusionXLControlNetPipeline
+from diffusers import StableDiffusionXLPipeline, StableDiffusionXLControlNetPipeline
 from compel import Compel, ReturnedEmbeddingsType
 
 def parse_args():
