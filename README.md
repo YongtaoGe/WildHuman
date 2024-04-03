@@ -3,8 +3,8 @@
 3D Human Reconstruction in the Wild with Synthetic Data Using Generative Models
 </h1>
 
-🔰 [Project Page](https://yongtaoge.github.io/projects/humanwild/), 📑 [Paper](https://arxiv.org/abs/2403.11111), 🤗 [HuggingFace](https://huggingface.co/geyongtao/HumanWild)
-
+🔰 [Project Page](https://yongtaoge.github.io/projects/humanwild/), 📑 [Paper](https://arxiv.org/abs/2403.11111), 🤗 [HuggingFace Demo](https://huggingface.co/spaces/geyongtao/HumanWild)
+    
 [Yongtao Ge]()<sup>2,</sup><sup>1</sup>, [Wenjia Wang]()<sup>3</sup>, [Yongfan Chen]()<sup>1</sup>, [Hao Chen]()<sup>1</sup>, [Chunhua Shen]()<sup>1</sup>
 
 <sup>1</sup>[Zhejiang University](https://www.zju.edu.cn/english/), &nbsp;
@@ -31,7 +31,7 @@ pip install -r requirements.txt
 
 2. download fixed SDXL VAE weight from https://huggingface.co/madebyollin/sdxl-vae-fp16-fix, put it in $VAE_DIR
 
-3. download the pretrained weight from huggingface repo and put it in $CONTROLNET_DIR
+3. download the pretrained weight from huggingface repo https://huggingface.co/geyongtao/HumanWild and put it in $CONTROLNET_DIR
 
 4. inference the demo code
 python demo.py \
